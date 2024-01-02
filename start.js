@@ -1,6 +1,7 @@
 module.exports = async (kernel) => {
   return {
     daemon: true,
+    pinokiod: ">=0.1.49",
     run: [{
       method: "shell.run",
       params: {
