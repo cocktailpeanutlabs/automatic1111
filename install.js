@@ -37,8 +37,8 @@ module.exports = async (kernel) => {
       "method": "fs.share",
       "params": {
         "drive": {
-          "torch": "app/venv/lib/python3.10/site-packages/torch",
-          "torchvision": "app/venv/lib/python3.10/site-packages/torchvision",
+          "torch": "{{platform === 'win32' ? 'app/venv/Lib/site-packages/torch' : 'app/venv/lib/python3.10/site-packages/torch'}}",
+          "torchvision": "{{platform === 'win32' ? 'app/venv/Lib/site-packages/torchvision' : 'app/venv/lib/python3.10/site-packages/torchvision'}}",
           "checkpoints": "app/models/Stable-diffusion",
 //          "configs": "app/models/Stable-diffusion",
           "vae": "app/models/VAE",
