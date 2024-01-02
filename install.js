@@ -24,7 +24,7 @@ module.exports = async (kernel) => {
     }, {
       "method": "fs.share",
       "params": {
-        "interface": {
+        "drive": {
           "checkpoints": "app/models/Stable-diffusion",
 //          "configs": "app/models/Stable-diffusion",
           "vae": "app/models/VAE",
@@ -41,7 +41,10 @@ module.exports = async (kernel) => {
           "hypernetworks": "app/models/hypernetworks",
           "controlnet": "app/models/ControlNet"
         },
-        "peers": ["https://github.com/cocktailpeanutlabs/comfyui.git"]
+        "peers": [
+          "https://github.com/cocktailpeanutlabs/comfyui.git",
+          "https://github.com/cocktailpeanutlabs/fooocus.git"
+        ]
       }
     }, {
       "method": "fs.download",
