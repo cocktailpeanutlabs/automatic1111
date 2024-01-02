@@ -27,9 +27,34 @@ module.exports = async (kernel) => {
         }
       }
     }, {
+      "method": "fs.download",
+      "params": {
+        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors",
+        "dir": "app/models/Stable-diffusion"
+      }
+    }, {
+      "method": "fs.download",
+      "params": {
+        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors",
+        "dir": "app/models/checkpoints"
+      }
+    }, {
+      "method": "shell.run",
+      "params": {
+        "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
+        "path": "app",
+        "env": {
+          "SD_WEBUI_RESTARTING": 1,
+        },
+        "on": [{ "event": "/http:\/\/[0-9.:]+/", "done": true }]
+      }
+    }, {
       "method": "fs.share",
       "params": {
         "drive": {
+          "torch": "app/env/lib/python3.10/site-packages/torch",
+          "torchvision": "app/env/lib/python3.10/site-packages/torchvision",
+          "torchaudio": "app/env/lib/python3.10/site-packages/torchaudio",
           "checkpoints": "app/models/Stable-diffusion",
 //          "configs": "app/models/Stable-diffusion",
           "vae": "app/models/VAE",
@@ -50,22 +75,6 @@ module.exports = async (kernel) => {
           "https://github.com/cocktailpeanutlabs/comfyui.git",
           "https://github.com/cocktailpeanutlabs/fooocus.git"
         ]
-      }
-    }, {
-      "method": "fs.download",
-      "params": {
-        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors",
-        "dir": "app/models/Stable-diffusion"
-      }
-    }, {
-      "method": "shell.run",
-      "params": {
-        "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
-        "path": "app",
-        "env": {
-          "SD_WEBUI_RESTARTING": 1,
-        },
-        "on": [{ "event": "/http:\/\/[0-9.:]+/", "done": true }]
       }
     }, {
       "method": "input",
