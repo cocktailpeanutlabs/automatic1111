@@ -27,18 +27,6 @@ module.exports = async (kernel) => {
         }
       }
     }, {
-      "method": "fs.download",
-      "params": {
-        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors",
-        "dir": "app/models/Stable-diffusion"
-      }
-    }, {
-      "method": "fs.download",
-      "params": {
-        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors",
-        "dir": "app/models/checkpoints"
-      }
-    }, {
       "method": "shell.run",
       "params": {
         "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
@@ -75,6 +63,18 @@ module.exports = async (kernel) => {
           "https://github.com/cocktailpeanutlabs/comfyui.git",
           "https://github.com/cocktailpeanutlabs/fooocus.git"
         ]
+      }
+    }, {
+      "method": "fs.download",
+      "params": {
+        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors",
+        "dir": "app/models/Stable-diffusion"
+      }
+    }, {
+      "method": "fs.download",
+      "params": {
+        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors",
+        "dir": "app/models/checkpoints"
       }
     }, {
       "method": "input",
