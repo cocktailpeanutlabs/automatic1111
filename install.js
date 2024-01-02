@@ -42,7 +42,6 @@ module.exports = async (kernel) => {
         "drive": {
           "torch": "app/venv/lib/python3.10/site-packages/torch",
           "torchvision": "app/venv/lib/python3.10/site-packages/torchvision",
-          "torchaudio": "app/venv/lib/python3.10/site-packages/torchaudio",
           "checkpoints": "app/models/Stable-diffusion",
 //          "configs": "app/models/Stable-diffusion",
           "vae": "app/models/VAE",
