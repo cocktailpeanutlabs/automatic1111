@@ -30,6 +30,9 @@ module.exports = async (kernel) => {
       "method": "shell.run",
       "params": {
         "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
+        "env": {
+          "SD_WEBUI_RESTARTING": 1,
+        },
         "path": "app",
         "on": [{ "event": "/http:\/\/[0-9.:]+/", "kill": true }]
       }
