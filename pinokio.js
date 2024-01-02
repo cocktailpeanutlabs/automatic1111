@@ -1,3 +1,4 @@
+const path = require('path')
 module.exports = {
   title: "Stable Diffusion web UI",
   description: "One-click launcher for Stable Diffusion web UI (AUTOMATIC1111/stable-diffusion-webui)",
