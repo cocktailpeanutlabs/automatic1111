@@ -56,6 +56,8 @@ module.exports = {
         ]
       }, {
         icon: "fa-solid fa-rotate", text: "Update", href: "update.json"
+      }, {
+        icon: "fa-solid fa-plug", text: "Fresh reinstall", href: "install.json"
       }])
       return arr
     } else {
@@ -63,7 +65,11 @@ module.exports = {
         icon: "fa-solid fa-plug",
         text: "Install",
         href: "install.js"
-      }, configure]
+      }, configure, {
+        icon: "fa-solid fa-rotate",
+        text: "Update",
+        href: "update.json"
+      }]
     }
   }
 }
