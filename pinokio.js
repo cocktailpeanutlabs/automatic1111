@@ -17,7 +17,7 @@ module.exports = {
       let running = kernel.running(__dirname, "start.js")
       let arr
       if (running) {
-        let local = kernel.local(__dirname, "start.js")
+        let local = kernel.memory.local[path.resolve(__dirname, "start.js")]
         if (local.url) {
           arr = [{
             icon: "fa-solid fa-rocket",
