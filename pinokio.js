@@ -39,7 +39,7 @@ module.exports = {
       } else {
         arr = [{
           icon: "fa-solid fa-rocket",
-          text: "start",
+          text: "Start",
           href: "start.js"
         }, configure]
       }
@@ -57,7 +57,7 @@ module.exports = {
       }, {
         icon: "fa-solid fa-rotate", text: "Update", href: "update.json"
       }, {
-        icon: "fa-solid fa-plug", text: "Fresh reinstall", href: "install.json"
+        icon: "fa-solid fa-plug", text: "Fresh reinstall", href: "install.js"
       }])
       return arr
     } else {
