@@ -31,10 +31,7 @@ module.exports = async (kernel) => {
       "params": {
         "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
         "path": "app",
-        "env": {
-          "SD_WEBUI_RESTARTING": 1,
-        },
-        "on": [{ "event": "/http:\/\/[0-9.:]+/", "done": true }]
+        "on": [{ "event": "/http:\/\/[0-9.:]+/", "kill": true }]
       }
     }, {
       "method": "fs.share",
