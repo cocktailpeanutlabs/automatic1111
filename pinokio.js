@@ -26,13 +26,13 @@ module.exports = {
             href: local.url
           }, {
             icon: "fa-solid fa-desktop",
-            text: "terminal",
+            text: "Terminal",
             href: "start.js"
           }, configure]
         } else {
           arr = [{
             icon: "fa-solid fa-desktop",
-            text: "terminal",
+            text: "Terminal",
             href: "start.js"
           }, configure]
         }
