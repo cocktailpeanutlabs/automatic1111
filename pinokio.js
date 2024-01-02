@@ -2,6 +2,7 @@ module.exports = {
   title: "Stable Diffusion web UI",
   description: "One-click launcher for Stable Diffusion web UI (AUTOMATIC1111/stable-diffusion-webui)",
   icon: "icon.png",
+  pinokiod: ">=0.1.49",
   menu: async (kernel) => {
     let installed = await kernel.exists(__dirname, "app", "venv")
     let installing = kernel.running(__dirname, "install.js")
