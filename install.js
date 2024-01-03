@@ -8,11 +8,6 @@ module.exports = async (kernel) => {
   let o = {
     "pinokiod": ">=0.1.49",
     run: [{
-      "method": "fs.rm",
-      "params": {
-        "path": "app"
-      }
-    }, {
       method: "shell.run",
       params: { message: `git clone ${repo} app` }
     }, {
