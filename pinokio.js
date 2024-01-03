@@ -59,7 +59,7 @@ module.exports = {
       }, {
         icon: "fa-solid fa-plug", text: "Reinstall", href: "install.js"
       }, {
-        icon: "fa-solid fa-broom", text: "Reset", href: "reset.json"
+        icon: "fa-solid fa-broom", text: "Factory Reset", href: "reset.json"
       }])
       return arr
     } else {
