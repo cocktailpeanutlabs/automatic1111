@@ -74,7 +74,7 @@ module.exports = async (kernel) => {
       "method": "fs.download",
       "params": {
         "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors",
-        "dir": "app/models/checkpoints"
+        "dir": "app/models/Stable-diffusion"
       }
     }, {
       "method": "input",
