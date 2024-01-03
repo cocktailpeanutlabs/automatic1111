@@ -27,22 +27,9 @@ module.exports = async (kernel) => {
         }
       }
     }, {
-      "method": "shell.run",
-      "params": {
-        "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
-        "env": {
-          "SD_WEBUI_RESTARTING": 1,
-        },
-        "path": "app",
-        "on": [{ "event": "/http:\/\/[0-9.:]+/", "kill": true }]
-      }
-    }, {
       "method": "fs.share",
       "params": {
         "drive": {
-// Don't share torch => the built-in installer uses its own version of torch
-//          "torch": "{{platform === 'win32' ? 'app/venv/Lib/site-packages/torch' : 'app/venv/lib/python3.10/site-packages/torch'}}",
-//          "torchvision": "{{platform === 'win32' ? 'app/venv/Lib/site-packages/torchvision' : 'app/venv/lib/python3.10/site-packages/torchvision'}}",
           "checkpoints": "app/models/Stable-diffusion",
 //          "configs": "app/models/Stable-diffusion",
           "vae": "app/models/VAE",
@@ -75,6 +62,16 @@ module.exports = async (kernel) => {
       "params": {
         "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors",
         "dir": "app/models/Stable-diffusion"
+      }
+    }, {
+      "method": "shell.run",
+      "params": {
+        "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
+        "env": {
+          "SD_WEBUI_RESTARTING": 1,
+        },
+        "path": "app",
+        "on": [{ "event": "/http:\/\/[0-9.:]+/", "kill": true }]
       }
     }, {
       "method": "input",
