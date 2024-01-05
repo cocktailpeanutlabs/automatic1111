@@ -13,13 +13,12 @@ module.exports = async (kernel) => {
     }, {
       "uri": "./index.js",
       "method": "config",
-    },
-    (kernel.platform === "darwin" && kernel.arch === "x64" ? {
-      "method": "log",
-      "params": {
-        "raw": "Detected Intel Mac"
-      }
-    } : {
+    }]
+  }
+  if (kernel.platform === "darwin" && kernel.arch === "x64") {
+    // nothing
+  } else {
+    o.run.push({
       "method": "self.set",
       "params": {
         "app/ui-config.json": {
@@ -27,32 +26,44 @@ module.exports = async (kernel) => {
           "txt2img/Height/value": 1024,
         }
       }
-    }), {
-      "method": "fs.share",
-      "params": {
-        "drive": {
-          "checkpoints": "app/models/Stable-diffusion",
+    })
+  }
+  o.run.push({
+    "method": "fs.share",
+    "params": {
+      "drive": {
+        "checkpoints": "app/models/Stable-diffusion",
 //          "configs": "app/models/Stable-diffusion",
-          "vae": "app/models/VAE",
-          "loras": [
-            "app/models/Lora",
-            "app/models/LyCORIS"
-          ],
-          "upscale_models": [
-            "app/models/ESRGAN",
-            "app/models/RealESRGAN",
-            "app/models/SwinIR"
-          ],
-          "embeddings": "app/embeddings",
-          "hypernetworks": "app/models/hypernetworks",
-          "controlnet": "app/models/ControlNet"
-        },
-        "peers": [
-          "https://github.com/cocktailpeanutlabs/comfyui.git",
-          "https://github.com/cocktailpeanutlabs/fooocus.git"
-        ]
+        "vae": "app/models/VAE",
+        "loras": [
+          "app/models/Lora",
+          "app/models/LyCORIS"
+        ],
+        "upscale_models": [
+          "app/models/ESRGAN",
+          "app/models/RealESRGAN",
+          "app/models/SwinIR"
+        ],
+        "embeddings": "app/embeddings",
+        "hypernetworks": "app/models/hypernetworks",
+        "controlnet": "app/models/ControlNet"
+      },
+      "peers": [
+        "https://github.com/cocktailpeanutlabs/comfyui.git",
+        "https://github.com/cocktailpeanutlabs/fooocus.git"
+      ]
+    }
+  })
+  if (kernel.platform === "darwin" && kernel.arch === "x64") {
+    o.run.push({
+      "method": "fs.download",
+      "params": {
+        "uri": "https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.safetensors?download=true",
+        "dir": "app/models/Stable-diffusion"
       }
-    }, {
+    })
+  } else {
+    o.run = o.run.concat([{
       "method": "fs.download",
       "params": {
         "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors",
@@ -64,24 +75,24 @@ module.exports = async (kernel) => {
         "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors",
         "dir": "app/models/Stable-diffusion"
       }
-    }, {
-      "method": "shell.run",
-      "params": {
-        "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
-        "env": {
-          "SD_WEBUI_RESTARTING": 1,
-        },
-        "path": "app",
-        "on": [{ "event": "/http:\/\/[0-9.:]+/", "kill": true }]
-      }
-    }, {
-      "method": "input",
-      "params": {
-        "title": "Install Success",
-        "description": "Click the 'start' tab to launch the app"
-      }
-    }]
+    }])
   }
+  o.run = o.run.concat([{
+    "method": "shell.run",
+    "params": {
+      "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
+      "env": {
+        "SD_WEBUI_RESTARTING": 1,
+      },
+      "path": "app",
+      "on": [{ "event": "/http:\/\/[0-9.:]+/", "kill": true }]
+    }
+  }, {
+    "method": "notify",
+    "params": {
+      "html": "Click the 'start' tab to launch the app"
+    }
+  }])
   if (kernel.platform === 'darwin') {
     o.requires = [{
       platform: "darwin",
