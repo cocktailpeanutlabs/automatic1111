@@ -58,7 +58,7 @@ module.exports = async (kernel) => {
     o.run.push({
       "method": "fs.download",
       "params": {
-        "uri": "https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.safetensors?download=true",
+        "uri": "https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.safetensors?download=true",
         "dir": "app/models/Stable-diffusion"
       }
     })
