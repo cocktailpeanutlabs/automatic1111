@@ -13,7 +13,13 @@ module.exports = async (kernel) => {
     }, {
       "uri": "./index.js",
       "method": "config",
-    }, {
+    },
+    (kernel.platform === "darwin" && kernel.arch === "x64" ? {
+      "method": "log",
+      "params": {
+        "raw": "Detected Intel Mac"
+      }
+    } : {
       "method": "self.set",
       "params": {
         "app/ui-config.json": {
@@ -21,7 +27,7 @@ module.exports = async (kernel) => {
           "txt2img/Height/value": 1024,
         }
       }
-    }, {
+    }), {
       "method": "fs.share",
       "params": {
         "drive": {
