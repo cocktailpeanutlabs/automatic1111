@@ -19,7 +19,7 @@ module.exports = {
       let arr
       if (running) {
         let local = kernel.memory.local[path.resolve(__dirname, "start.js")]
-        if (local.url) {
+        if (local && local.url) {
           arr = [{
             icon: "fa-solid fa-rocket",
             text: "Open Web UI",
