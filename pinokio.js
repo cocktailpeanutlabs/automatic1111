@@ -62,7 +62,7 @@ module.exports = {
       }, {
         icon: "fa-solid fa-plug", text: "Reinstall", href: "install.js"
       }, {
-        icon: "fa-solid fa-circle-xmark", text: "Reset", href: "reset.json"
+        icon: "fa-solid fa-circle-xmark", text: "Reset", href: "reset.json", confirm: true
       }])
       return arr
     } else {
