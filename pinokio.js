@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  version: 1,
+  version: "1.1",
   title: "Stable Diffusion web UI",
   description: "One-click launcher for Stable Diffusion web UI (AUTOMATIC1111/stable-diffusion-webui)",
   icon: "icon.png",
@@ -50,6 +50,7 @@ module.exports = {
           { text: "Download by URL", icon: "fa-solid fa-download", href: "download.html?raw=true" },
           { text: "SDXL", icon: "fa-solid fa-download", href: "download-sdxl.json", mode: "refresh" },
           { text: "SDXL Turbo", icon: "fa-solid fa-download", href: "download-turbo.json", mode: "refresh" },
+          { text: "Stable Video XT 1.1", icon: "fa-solid fa-download", href: "download-svd-xt-1.1.json", mode: "refresh" },
           { text: "Stable Video XT", icon: "fa-solid fa-download", href: "download-svd-xt.json", mode: "refresh" },
           { text: "Stable Video", icon: "fa-solid fa-download", href: "download-svd.json", mode: "refresh" },
           { text: "LCM LoRA", icon: "fa-solid fa-download", href: "download-lcm-lora.json", mode: "refresh" },
@@ -61,7 +62,7 @@ module.exports = {
       }, {
         icon: "fa-solid fa-plug", text: "Reinstall", href: "install.js"
       }, {
-        icon: "fa-solid fa-broom", text: "Factory Reset", href: "reset.json"
+        icon: "fa-solid fa-circle-xmark", text: "Reset", href: "reset.json"
       }])
       return arr
     } else {

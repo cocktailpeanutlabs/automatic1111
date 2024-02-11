@@ -1,0 +1,9 @@
+{
+  "run": [{
+    "method": "fs.download",
+    "params": {
+      "uri": "https://huggingface.co/cocktailpeanut/sv/resolve/main/svd_xt_1_1.safetensors?download=true",
+      "dir": "app/models/Stable-diffusion"
+    }
+  }]
+}

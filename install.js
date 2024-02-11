@@ -6,7 +6,6 @@ module.exports = async (kernel) => {
     repo = "https://github.com/AUTOMATIC1111/stable-diffusion-webui"
   }
   let o = {
-    "pinokiod": ">=0.1.49",
     run: [{
       method: "shell.run",
       params: { message: `git clone ${repo} app` }
@@ -52,6 +51,14 @@ module.exports = async (kernel) => {
         "https://github.com/cocktailpeanutlabs/comfyui.git",
         "https://github.com/cocktailpeanutlabs/fooocus.git"
       ]
+    }
+  })
+  o.run.push({
+    "method": "fs.share",
+    "params": {
+      "drive": {
+        "outputs": "app/outputs"
+      }
     }
   })
   if (kernel.platform === "darwin" && kernel.arch === "x64") {
