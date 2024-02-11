@@ -62,7 +62,7 @@ module.exports = {
       }, {
         icon: "fa-solid fa-plug", text: "Reinstall", href: "install.js"
       }, {
-        icon: "fa-solid fa-circle-xmark", text: "Reset", href: "reset.json", confirm: true
+        icon: "fa-solid fa-circle-xmark", text: "Reset", href: "reset.json", confirm: "Are you sure you wish to reset the app?"
       }])
       return arr
     } else {
