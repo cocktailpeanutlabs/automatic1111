@@ -49,7 +49,8 @@ module.exports = async (kernel) => {
       },
       "peers": [
         "https://github.com/cocktailpeanutlabs/comfyui.git",
-        "https://github.com/cocktailpeanutlabs/fooocus.git"
+        "https://github.com/cocktailpeanutlabs/fooocus.git",
+        "https://github.com/cocktailpeanutlabs/forge.git"
       ]
     }
   })
