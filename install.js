@@ -54,14 +54,15 @@ module.exports = async (kernel) => {
       ]
     }
   })
-  o.run.push({
-    "method": "fs.share",
-    "params": {
-      "drive": {
-        "outputs": "app/outputs"
-      }
-    }
-  })
+//// Don't use links because gradio requires all files to be under the app directory, unless the app is launched with allowed_paths is specified
+//  o.run.push({
+//    "method": "fs.share",
+//    "params": {
+//      "drive": {
+//        "outputs": "app/outputs"
+//      }
+//    }
+//  })
   if (kernel.platform === "darwin" && kernel.arch === "x64") {
     o.run.push({
       "method": "fs.download",
