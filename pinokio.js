@@ -21,6 +21,7 @@ module.exports = {
         let local = kernel.memory.local[path.resolve(__dirname, "start.js")]
         if (local && local.url) {
           arr = [{
+            default: true,
             icon: "fa-solid fa-rocket",
             text: "Open Web UI",
             href: local.url
@@ -38,6 +39,7 @@ module.exports = {
         }
       } else {
         arr = [{
+          default: true,
           icon: "fa-solid fa-rocket",
           text: "Start",
           href: "start.js"
@@ -67,6 +69,7 @@ module.exports = {
       return arr
     } else {
       return [{
+        default: true,
         icon: "fa-solid fa-plug",
         text: "Install",
         href: "install.js"
