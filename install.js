@@ -93,7 +93,7 @@ module.exports = async (kernel) => {
       "params": {
         "message": "webui.bat",
         "env": {
-          "COMMANDLINE_ARGS": "--use-directml",
+          "COMMANDLINE_ARGS": "--use-directml --skip-torch-cuda-test ",
           "SD_WEBUI_RESTARTING": 1,
         },
         "path": "app",
