@@ -86,22 +86,33 @@ module.exports = async (kernel) => {
       }
     }])
   }
-  o.run = o.run.concat([{
-    "method": "shell.run",
-    "params": {
-      "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
-      "env": {
-        "SD_WEBUI_RESTARTING": 1,
-      },
-      "path": "app",
-      "on": [{ "event": "/http:\/\/[0-9.:]+/", "kill": true }]
-    }
-  }, {
-    "method": "notify",
-    "params": {
-      "html": "Click the 'start' tab to launch the app"
-    }
-  }])
+  console.log("#info", { gpu: kernel.gpu, platform: kernel.platform })
+  if (kernel.gpu === 'amd' && kernel.platform === 'win32') {
+    o.run = o.run.concat([{
+      "method": "shell.run",
+      "params": {
+        "message": "webui.bat",
+        "env": {
+          "COMMANDLINE_ARGS": "--use-directml",
+          "SD_WEBUI_RESTARTING": 1,
+        },
+        "path": "app",
+        "on": [{ "event": "/http:\/\/[0-9.:]+/", "kill": true }]
+      }
+    }])
+  } else {
+    o.run = o.run.concat([{
+      "method": "shell.run",
+      "params": {
+        "message": "{{platform === 'win32' ? 'webui-user.bat' : 'bash webui.sh -f'}}",
+        "env": {
+          "SD_WEBUI_RESTARTING": 1,
+        },
+        "path": "app",
+        "on": [{ "event": "/http:\/\/[0-9.:]+/", "kill": true }]
+      }
+    }])
+  }
   if (kernel.platform === 'darwin') {
     o.requires = [{
       platform: "darwin",
