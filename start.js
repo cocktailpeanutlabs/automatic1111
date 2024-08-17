@@ -12,6 +12,19 @@ module.exports = async (kernel) => {
         message: "pip install tqdm moviepy --upgrade"
       }
     }, {
+      when: "{{gpu ==='amd' && platform === 'win32'}}",
+      method: "shell.run",
+      params: {
+        path: "app",
+        message: "webui.bat",
+        env: {
+          "COMMANDLINE_ARGS": "--use-directml --skip-torch-cuda-test ",
+          "SD_WEBUI_RESTARTING": 1,
+        },
+        on: [{ "event": "/http:\/\/[0-9.:]+/", "done": true }]
+      }
+    }, {
+      when: "{{!(gpu ==='amd' && platform === 'win32')}}",
       method: "shell.run",
       params: {
         path: "app",
