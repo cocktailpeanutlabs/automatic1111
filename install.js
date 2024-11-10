@@ -48,9 +48,11 @@ module.exports = async (kernel) => {
         "controlnet": "app/models/ControlNet"
       },
       "peers": [
-        "https://github.com/cocktailpeanutlabs/comfyui.git",
+        "https://github.com/cocktailpeanut/fluxgym.git",
         "https://github.com/cocktailpeanutlabs/fooocus.git",
-        "https://github.com/cocktailpeanutlabs/forge.git"
+        "https://github.com/cocktailpeanutlabs/comfyui.git",
+        "https://github.com/pinokiofactory/comfy.git",
+        "https://github.com/pinokiofactory/stable-diffusion-webui-forge.git"
       ]
     }
   })
