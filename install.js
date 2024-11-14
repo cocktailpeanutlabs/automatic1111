@@ -27,6 +27,21 @@ module.exports = async (kernel) => {
       }
     })
   }
+  if (kernel.platform === 'win32') {
+    o.run.push({
+      "method": "shell.run",
+      "params": {
+        "message": "mkdir app\\models\\ControlNet app\\models\\ESRGAN app\\models\\hypernetworks app\\models\\Lora",
+      }
+    })
+  } else {
+    o.run.push({
+      "method": "shell.run",
+      "params": {
+        "message": "mkdir -p app/models/ControlNet app/models/ESRGAN app/models/hypernetworks app/models/Lora",
+      }
+    })
+  }
   o.run.push({
     "method": "fs.share",
     "params": {
@@ -34,15 +49,8 @@ module.exports = async (kernel) => {
         "checkpoints": "app/models/Stable-diffusion",
 //          "configs": "app/models/Stable-diffusion",
         "vae": "app/models/VAE",
-        "loras": [
-          "app/models/Lora",
-          "app/models/LyCORIS"
-        ],
-        "upscale_models": [
-          "app/models/ESRGAN",
-          "app/models/RealESRGAN",
-          "app/models/SwinIR"
-        ],
+        "loras": "app/models/Lora",
+        "upscale_models": "app/models/ESRGAN",
         "embeddings": "app/embeddings",
         "hypernetworks": "app/models/hypernetworks",
         "controlnet": "app/models/ControlNet"
