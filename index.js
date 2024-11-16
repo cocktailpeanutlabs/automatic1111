@@ -43,11 +43,15 @@ class Automatic1111 {
       await fs.promises.writeFile(path.resolve(__dirname, "app", "webui-user.bat"), newtext)
     } else {
       // linux
-      let test = vendors.filter((vendor) => {
-        return /advanced micro devices/i.test(vendor)
+      let is_nvidia = vendors.filter((vendor) => {
+        return /nvidia/i.test(vendor)
       }).length > 0
-      if (test) {
-      //if (/amd/i.test(vendor)) {
+      let is_amd = vendors.filter((vendor) => {
+        return /(amd|advanced micro devices)/i.test(vendor)
+      }).length > 0
+      if (is_nvidia) {
+        defaultArgs += "--xformers --no-half-vae --api"
+      } else if (is_amd) {
         // lshqqytiger
         defaultArgs += "--precision full --no-half-vae --api"
       } else {
