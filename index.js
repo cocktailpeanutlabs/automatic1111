@@ -38,7 +38,7 @@ class Automatic1111 {
       if (is_nvidia) {
         defaultArgs += "--xformers --no-half-vae --api"
       } else if (is_amd) {
-        defaultArgs += "--no-half-vae --api"
+        defaultArgs += "--skip-torch-cuda-test --opt-sub-quad-attention --no-half --use-directml --api"
       } else {
         defaultArgs += "--xformers --no-half-vae --api"
       }
