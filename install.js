@@ -14,6 +14,16 @@ module.exports = async (kernel) => {
       "method": "config",
     }]
   }
+  if (kernel.gpu === "amd" && kernel.platform === "win32") {
+    o.run.push({
+      "method": "shell.run",
+      "params": {
+        "message": "copy requirements*.txt app\\ /Y",
+      }
+    })
+  } else {
+    // nothing
+  }
   if (kernel.platform === "darwin" && kernel.arch === "x64") {
     // nothing
   } else {
