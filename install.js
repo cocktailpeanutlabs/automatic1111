@@ -14,6 +14,16 @@ module.exports = async (kernel) => {
       "method": "config",
     }]
   }
+  if (kernel.gpu === "amd" && kernel.platform === "win32") {
+    o.run.push({
+      "method": "shell.run",
+      "params": {
+        "message": "copy requirements*.txt app\\ /Y",
+      }
+    })
+  } else {
+    // nothing
+  }
   if (kernel.platform === "darwin" && kernel.arch === "x64") {
     // nothing
   } else {
@@ -27,6 +37,21 @@ module.exports = async (kernel) => {
       }
     })
   }
+  if (kernel.platform === 'win32') {
+    o.run.push({
+      "method": "shell.run",
+      "params": {
+        "message": "mkdir app\\models\\ControlNet app\\models\\ESRGAN app\\models\\hypernetworks app\\models\\Lora",
+      }
+    })
+  } else {
+    o.run.push({
+      "method": "shell.run",
+      "params": {
+        "message": "mkdir -p app/models/ControlNet app/models/ESRGAN app/models/hypernetworks app/models/Lora",
+      }
+    })
+  }
   o.run.push({
     "method": "fs.share",
     "params": {
@@ -34,23 +59,18 @@ module.exports = async (kernel) => {
         "checkpoints": "app/models/Stable-diffusion",
 //          "configs": "app/models/Stable-diffusion",
         "vae": "app/models/VAE",
-        "loras": [
-          "app/models/Lora",
-          "app/models/LyCORIS"
-        ],
-        "upscale_models": [
-          "app/models/ESRGAN",
-          "app/models/RealESRGAN",
-          "app/models/SwinIR"
-        ],
+        "loras": "app/models/Lora",
+        "upscale_models": "app/models/ESRGAN",
         "embeddings": "app/embeddings",
         "hypernetworks": "app/models/hypernetworks",
         "controlnet": "app/models/ControlNet"
       },
       "peers": [
-        "https://github.com/cocktailpeanutlabs/comfyui.git",
+        "https://github.com/cocktailpeanut/fluxgym.git",
         "https://github.com/cocktailpeanutlabs/fooocus.git",
-        "https://github.com/cocktailpeanutlabs/forge.git"
+        "https://github.com/cocktailpeanutlabs/comfyui.git",
+        "https://github.com/pinokiofactory/comfy.git",
+        "https://github.com/pinokiofactory/stable-diffusion-webui-forge.git"
       ]
     }
   })
