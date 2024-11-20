@@ -18,10 +18,15 @@ module.exports = async (kernel) => {
         path: "app",
         message: "webui.bat",
         env: {
-          "COMMANDLINE_ARGS": "--use-directml --skip-torch-cuda-test ",
+          "COMMANDLINE_ARGS": "--use-directml --skip-torch-cuda-test --opt-sub-quad-attention --no-half --api",
           "SD_WEBUI_RESTARTING": 1,
         },
-        on: [{ "event": "/http:\/\/[0-9.:]+/", "done": true }]
+        on: [{
+          "event": "/http:\/\/[0-9.:]+/", "done": true
+        }, {
+          "event": "/error:/i",
+          "break": false
+        }]
       }
     }, {
       when: "{{!(gpu ==='amd' && platform === 'win32')}}",
@@ -32,7 +37,12 @@ module.exports = async (kernel) => {
         env: {
           "SD_WEBUI_RESTARTING": 1,
         },
-        on: [{ "event": "/http:\/\/[0-9.:]+/", "done": true }]
+        on: [{
+          "event": "/http:\/\/[0-9.:]+/", "done": true
+        }, {
+          "event": "/error:/i",
+          "break": false
+        }]
       }
     }, {
       method: "local.set",
