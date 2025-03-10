@@ -133,6 +133,21 @@ module.exports = async (kernel) => {
       }
     }])
   }
+  if (kernel.gpu === 'nvidia' && kernel.gpu_model && / 50.+/.test(kernel.gpu_model)) {
+    o.run = o.run.concat([
+      // nvidia 50 series
+      {
+        "method": "shell.run",
+        "params": {
+          "venv": "venv",
+          "path": "app",
+          "message": [
+            "uv pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128 --force-reinstall"
+          ]
+        },
+      }
+    ])
+  }
   if (kernel.platform === 'darwin') {
     o.requires = [{
       platform: "darwin",
