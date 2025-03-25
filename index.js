@@ -36,7 +36,11 @@ class Automatic1111 {
         return /(amd|advanced micro devices)/i.test(vendor)
       }).length > 0
       if (is_nvidia) {
-        defaultArgs += "--xformers --no-half-vae --api"
+        if (kernel.gpu_model && / 50.+/.test(kernel.gpu_model)) {
+          defaultArgs += "--no-half-vae --api"
+        } else {
+          defaultArgs += "--xformers --no-half-vae --api"
+        }
       } else if (is_amd) {
         defaultArgs += "--skip-torch-cuda-test --opt-sub-quad-attention --no-half --use-directml --api"
       } else {
@@ -55,7 +59,11 @@ class Automatic1111 {
         return /(amd|advanced micro devices)/i.test(vendor)
       }).length > 0
       if (is_nvidia) {
-        defaultArgs += "--xformers --no-half-vae --api"
+        if (kernel.gpu_model && / 50.+/.test(kernel.gpu_model)) {
+          defaultArgs += "--no-half-vae --api"
+        } else {
+          defaultArgs += "--xformers --no-half-vae --api"
+        }
       } else if (is_amd) {
         // lshqqytiger
         defaultArgs += "--precision full --no-half-vae --api"
