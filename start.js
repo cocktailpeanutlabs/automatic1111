@@ -2,16 +2,16 @@ module.exports = async (kernel) => {
   return {
     daemon: true,
     run: [{
-      method: "shell.run",
-      params: {
-        path: "app",
-        venv: "venv",
-        env: {
-          SD_WEBUI_RESTARTING: 1,
-        },
-        message: "pip install tqdm moviepy --upgrade"
-      }
-    }, {
+//      method: "shell.run",
+//      params: {
+//        path: "app",
+//        venv: "venv",
+//        env: {
+//          SD_WEBUI_RESTARTING: 1,
+//        },
+//        message: "pip install tqdm moviepy --upgrade"
+//      }
+//    }, {
       when: "{{gpu ==='amd' && platform === 'win32'}}",
       method: "shell.run",
       params: {
